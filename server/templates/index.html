@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SignAura - Gesture Recognition</title>
+  <script src="https://cdn.socket.io/4.5.4/socket.io.min.js" crossorigin="anonymous"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background: #f0f0f0;
+      padding: 30px;
+    }
+    h1 {
+      color: #333;
+    }
+    video, img {
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.2);
+      max-width: 90%;
+    }
+    #gesture {
+      margin-top: 20px;
+      font-size: 24px;
+      color: green;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>SignAura - Live Gesture Recognition</h1>
+  <img id="videoFeed" src="{{ url_for('video') }}" alt="Live Feed"/>
+  <div id="gesture">Gesture: --</div>
+
+  <script>
+    const socket = io("http://localhost:5000"); // 🔧 Updated
+
+    socket.on('connect', () => {
+      console.log("Connected to Flask-SocketIO");
+    });
+
+    socket.on('disconnect', () => {
+      console.log("Disconnected from server");
+    });
+
+    // Show received gesture
+    socket.on('gesture', function(data) {
+      console.log("Gesture received:", data.gesture);
+      document.getElementById('gesture').innerText = 'Gesture: ' + data.gesture;
+    });
+
+    socket.emit('set_mode', { mode: 'static' }); // Change to dynamic if needed
+
+    window.onbeforeunload = () => {
+      socket.emit('stop_camera');
+    };
+  </script>
+
+</body>
+</html>
