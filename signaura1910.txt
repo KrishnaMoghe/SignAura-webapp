@@ -1,4 +1,0 @@
-signaura1910
-VQLp0NzQ1c8Fyx4m
-
-mongodb+srv://signaura1910:VQLp0NzQ1c8Fyx4m@cluster0.pxrytej.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
