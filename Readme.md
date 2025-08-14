@@ -51,23 +51,38 @@ This repository contains the **web application** codebase, including:
 ## 📂 Repository Structure
 
 ```
-
-SignAura-WebApp/
+SignAura - Webapp/
 │
-├── app.py                    # Main Flask app (gesture recognition + chatbot)
-├── index.js                   # Node.js authentication server
-├── GestureModels/             # Pre-trained static & dynamic gesture models
-│   ├── static\_gesture\_model.h5
-│   └── dynamic\_gesture\_model.h5
-├── gestures.csv               # Base gesture dictionary
-├── user\_added\_gestures.csv    # User-taught gestures (auto-generated)
-├── templates/
-│   └── index.html             # Web UI template
-├── static/                    # Frontend assets (CSS/JS)
+├── server/                    # Backend server directory
+│   ├── app.py                # Main Flask app (gesture recognition + chatbot)
+│   ├── signmate.py           # SignMate chatbot implementation
+│   ├── index.js              # Node.js authentication server
+│   ├── package.json          # Node.js dependencies
+│   ├── package-lock.json     # Node.js lock file
+│   ├── gestures.csv          # Base gesture dictionary
+│   ├── templates/
+│   │   └── index.html        # Web UI template
+│   ├── GestureModels/        # Pre-trained ML models
+│   │   ├── static_gesture_model.h5
+│   │   └── dynamic_gesture_model.h5
+│   ├── Middlewares/          # Custom middleware functions
+│   ├── Routes/               # API route definitions
+│   ├── Controllers/          # Business logic controllers
+│   ├── Models/               # Data models
+│   ├── util/                 # Utility functions
+│   ├── venv/                 # Python virtual environment
+│   └── node_modules/         # Node.js dependencies
+│
+├── client/                    # Frontend React application
+│   ├── src/                  # React source code
+│   ├── public/               # Static assets
+│   ├── package.json          # React dependencies
+│   ├── package-lock.json     # React lock file
+│   └── node_modules/         # React dependencies
+│
 ├── requirements.txt           # Python dependencies
-├── package.json               # Node.js dependencies
-├── Procfile                   # Deployment start commands
-└── README.md                  # Project documentation
+├── .gitignore                # Git ignore rules
+└── README.md                 # Project documentation
 
 ````
 
@@ -77,8 +92,8 @@ SignAura-WebApp/
 
 ### 1️⃣ Clone the repository
 ```bash
-git clone https://github.com/<your-username>/SignAura-WebApp.git
-cd SignAura-WebApp
+git clone https://github.com/<your-username>/Login-Signup-page.git
+cd Login-Signup-page
 ````
 
 ### 2️⃣ Install Python dependencies
@@ -90,9 +105,8 @@ pip install -r requirements.txt
 ### 3️⃣ Install Node.js dependencies (for authentication)
 
 ```bash
-cd auth
+cd server
 npm install
-cd ..
 ```
 
 ### 4️⃣ Place ML models
